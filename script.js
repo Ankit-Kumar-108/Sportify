@@ -1,22 +1,22 @@
 async function getSongs() {
-  const getM = await fetch("http://127.0.0.1:3000/assets/Music/")
-  let text = await getM.text()
-  // console.log(text);
+  const getM = await fetch("./assets/songs.json")
+  let text = await getM.json()
+  console.log(text);
 
 
-  const div = document.createElement('div')
-  div.innerHTML = text
-  const as = div.getElementsByTagName('a')
+  // const div = document.createElement('div')
+  // div.innerHTML = text.songs
+  const as = text.songs
   // console.log(as)
 
   let songs = []
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
-    if (element.href.endsWith(".mp3"))
-      songs.push(element.href)
+    if (element.endsWith(".mp3"))
+      songs.push(`./assets/Music/${element}`)
 
   }
-  //  console.log(songs)
+   console.log(songs)
   return songs
 
 }
@@ -54,6 +54,8 @@ async function setupMusic() {
     setMusicIndex = (setMusicIndex + 1 ) % songs.length
     myMusic.src = songs[setMusicIndex]
     console.log(setMusicIndex)
+
+    myMusic.load()
     
     myMusic.play()
     start.innerHTML = '<span class="material-symbols-outlined">pause</span>'
@@ -65,9 +67,11 @@ async function setupMusic() {
     console.log("previous is pressed")
 
     myMusic.pause()
-    setMusicIndex = (setMusicIndex -1) % songs.length
+    setMusicIndex = (setMusicIndex -1 + songs.length) % songs.length
     myMusic.src = songs[setMusicIndex]
     console.log(setMusicIndex)
+
+    myMusic.load()
 
     myMusic.play()
     start.innerHTML = '<span class="material-symbols-outlined">pause</span>';
