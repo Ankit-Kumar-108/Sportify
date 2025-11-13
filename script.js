@@ -26,9 +26,9 @@ async function setupMusic() {
   const next = document.getElementById('next');
   const Before = document.getElementById('previous');
   const seeker = document.getElementById('SeekBar');
-  // for discovery id dynamic
+  // for album img id dynamic
 
-const album = document.getElementById('album')
+const album = document.getElementById('player-art')
 const alb = songs[setMusicIndex].image
 const imgg = document.createElement('img')
 console.log(alb)
@@ -37,8 +37,54 @@ imgg.style.width = "100%"
 album.innerHTML = ""
 album.appendChild(imgg)
 
+// for alubum title
 
-// leave it its for seekbar  ---start--- 
+const tit = document.getElementById('player-title')
+const ti = document.createElement('b')
+ti.textContent = songs[setMusicIndex].title
+console.log("Title of the song", songs.title)
+tit.innerHTML = ""
+tit.appendChild(ti)
+
+
+// for greet
+const Greet = document.getElementById('greet')
+const gt = document.createElement('b')
+const tim = new Date
+const tim24 = tim.getHours()
+console.log("Current Time",tim24)
+if (tim24<12) {
+  gt.textContent = "Good Morning🌄"
+}else if (tim24<18) {
+  gt.textContent = "Good Afternoon☀️"
+} else {
+  gt.textContent = "Good Evening🌛"
+}
+Greet.innerHTML = ""
+Greet.appendChild(gt)
+
+
+// shuffle
+
+const shuffle = document.getElementById('Shuffle')
+let isShuffle = false
+
+shuffle.addEventListener('click', ()=>{
+  isShuffle = !isShuffle
+  
+  if (isShuffle){
+    shuffle.innerHTML = ' <span class="material-symbols-outlined" style = "color:white;">shuffle</span>'
+  }else{
+    shuffle.innerHTML = '<span class="material-symbols-outlined">shuffle</span>'
+    
+  }
+  console.log( isShuffle ? "on":"off")
+})
+
+
+
+
+// leave it, its for seekbar  ---start--- 
   function updateSeekBg() {
     if (!seeker) return;
     const min = parseFloat(seeker.min) || 0;
@@ -79,33 +125,78 @@ album.appendChild(imgg)
     }
   });
 
+
+  myMusic.addEventListener('play',()=>{
+        start.innerHTML = '<span class="material-symbols-outlined">pause</span>';
+  })
+
+  myMusic.addEventListener('pause',()=>{
+     start.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
+  })
+
+
   next.addEventListener('click', () => {
     console.log('next is pressed');
     myMusic.pause();
+    let newIndex
+      // shuffle of next
+    if(isShuffle){
+      console.log("playing in random order")
+    do {
+      newIndex = Math.floor(Math.random()*songs.length)
+    } while (newIndex === setMusicIndex);
+      setMusicIndex = newIndex
+    }else{
+      console.log("playing in next order")
     setMusicIndex = (setMusicIndex + 1) % songs.length;
+    }
+            // end shuffle
+
     myMusic.src = songs[setMusicIndex].file;
     console.log(setMusicIndex);
 
     myMusic.load();
     myMusic.play();
-    start.innerHTML = '<span class="material-symbols-outlined">pause</span>';
+    
 
     imgg.src = songs[setMusicIndex].image
+    ti.textContent = songs[setMusicIndex].title
   });
 
   Before.addEventListener('click', () => {
     console.log("previous is pressed");
     myMusic.pause();
-    setMusicIndex = (setMusicIndex - 1 + songs.length) % songs.length;
+
+    let newIndex;
+      // shuffle of previous
+    if(isShuffle){
+      console.log("playing in random order")
+    do {
+      newIndex = Math.floor(Math.random()*songs.length)
+    } while (newIndex === setMusicIndex);
+      setMusicIndex = newIndex
+    }else{
+      console.log("playing in previous order")
+    
+      setMusicIndex = (setMusicIndex - 1 + songs.length) % songs.length;
+    }
+          //  end shuffle
     myMusic.src = songs[setMusicIndex].file;
     console.log(setMusicIndex);
 
     myMusic.load();
     myMusic.play();
-    start.innerHTML = '<span class="material-symbols-outlined">pause</span>';
+    
 
-    imgg.src = songs[setMusicIndex].image
+    
   });
+  imgg.src = songs[setMusicIndex].image
+   ti.textContent = songs[setMusicIndex].title
+      // auto next clicker
+   myMusic.addEventListener('ended', ()=>{
+      console.log("auto next is triggred")
+      next.click();
+   })
   updateSeekBg(); 
 }
 setupMusic();
