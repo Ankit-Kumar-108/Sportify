@@ -32,7 +32,7 @@ const album = document.getElementById('player-art')
 const alb = songs[setMusicIndex].image
 const imgg = document.createElement('img')
 console.log(alb)
-imgg.src = alb
+imgg.src =`./${alb}`
 imgg.style.width = "100%"
 album.innerHTML = ""
 album.appendChild(imgg)
@@ -189,9 +189,9 @@ shuffle.addEventListener('click', ()=>{
     
 
     
+    imgg.src = songs[setMusicIndex].image
+     ti.textContent = songs[setMusicIndex].title
   });
-  imgg.src = songs[setMusicIndex].image
-   ti.textContent = songs[setMusicIndex].title
       // auto next clicker
    myMusic.addEventListener('ended', ()=>{
       console.log("auto next is triggred")
