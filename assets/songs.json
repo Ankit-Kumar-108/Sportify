@@ -132,6 +132,153 @@
       "artist": "Vishal Mishra",
       "file": "Tum Ho Toh.mp3",
       "image": "assets/Albums/tum-ho-toh.jpg"
+    },
+    {
+      "id": "local_1763141955397",
+      "title": "Cradles",
+      "artist": "Sub Urban",
+      "file": "Sub Urban - Cradles [NCS Release].mp3",
+      "image": "assets/Albums/Sub Urban - Cradles [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763141958860",
+      "title": "Fearless",
+      "artist": "TULE",
+      "file": "TULE - Fearless [NCS Release].mp3",
+      "image": "assets/Albums/TULE - Fearless [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763142017108",
+      "title": "FearlessPt.II",
+      "artist": "TULE, CHRIS LINTON",
+      "file": "TULE, Chris Linton - Fearless pt. II (feat. Chris Linton) [NCS Release].mp3",
+      "image": "assets/Albums/TULE, Chris Linton - Fearless pt. II (feat. Chris Linton) [NCS Release].jpg"
+    },
+     {
+      "id": "local_1763146508576",
+      "title": "Dreams Pt.II",
+      "artist": "LOST SKY",
+      "file": "Lost Sky, Sara Skinner - Dreams pt. II (feat. Sara Skinner) [NCS Release].mp3",
+      "image": "assets\\Albums\\dreams-pt-ii-feat-sara-skinner-1586957095-ucmzLb3h13.jpg"
+    },
+    {
+      "id": "local_1763143655148",
+      "title": "Cartoon - Why We Lose NCS",
+      "artist": "Coleman Trapp, Jéja",
+      "file": "Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].mp3",
+      "image": "assets/Albums/Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143698380",
+      "title": "Cartoon - On & On NCS",
+      "artist": " Daniel Levi",
+      "file": "Cartoon, Daniel Levi, Jéja - On & On (feat. Daniel Levi) [NCS Release].mp3",
+      "image": "assets/Albums/Cartoon, Daniel Levi, Jéja - On & On (feat. Daniel Levi) [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143721839",
+      "title": "DEAF KEV - Invincible NCS",
+      "artist": "DEAF KEV",
+      "file": "DEAF KEV - Invincible [NCS Release].mp3",
+      "image": "assets/Albums/DEAF KEV - Invincible [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143744898",
+      "title": "Desmeon - Hellcat NCS ",
+      "artist": "DESMEON",
+      "file": "Desmeon - Hellcat [NCS Release].mp3",
+      "image": "assets/Albums/Desmeon - Hellcat [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143790503",
+      "title": "Nekozilla NCS",
+      "artist": "Different Heaven",
+      "file": "Different Heaven - Nekozilla [NCS Release].mp3",
+      "image": "assets/Albums/Different Heaven - Nekozilla [NCS Release].jpg"
+    },
+      {
+      "id": "local_1763143861960",
+      "title": "My Heart NCS",
+      "artist": "Different Heaven & EH!DE",
+      "file": "Different Heaven, EH!DE - My Heart [NCS Release].mp3",
+      "image": "assets/Albums/Different Heaven, EH!DE - My Heart [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143888103",
+      "title": "Blank NCS",
+      "artist": "Disfigure",
+      "file": "Disfigure - Blank [NCS Release].mp3",
+      "image": "assets/Albums/Disfigure - Blank [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143917107",
+      "title": "Sky High NCS",
+      "artist": "ELECKTRONIMIA",
+      "file": "Elektronomia - Sky High [NCS Release].mp3",
+      "image": "assets/Albums/Elektronomia - Sky High [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143951647",
+      "title": "Heroes Tonight NCS",
+      "artist": "JANJI",
+      "file": "Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].mp3",
+      "image": "assets/Albums/Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763143977201",
+      "title": "Firefly NCS",
+      "artist": "Jim Yosef",
+      "file": "Jim Yosef - Firefly [NCS Release].mp3",
+      "image": "assets/Albums/Jim Yosef - Firefly [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763144011456",
+      "title": "Firefly Pt.II NCS",
+      "artist": "Jim Yosef",
+      "file": "Jim Yosef - Firefly pt. II [NCS Release].mp3",
+      "image": "assets/Albums/Jim Yosef - Firefly pt. II [NCS Release].jpg"
+    },
+     {
+      "id": "local_1763144074961",
+      "title": "Link NCS",
+      "artist": "Jim Yosef",
+      "file": "Jim Yosef - Link [NCS Release].mp3",
+      "image": "assets/Albums/Jim Yosef - Link [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763144102312",
+      "title": "Lost Sky - Dreams ",
+      "artist": "LOST SKY",
+      "file": "Lost Sky - Dreams [NCS Release].mp3",
+      "image": "assets/Albums/Lost Sky - Dreams [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763144117514",
+      "title": "Royalty (ft. Neoni) NCS",
+      "artist": "Egzod & Maestro Chives",
+      "file": "Maestro Chives, Egzod, Neoni - Royalty [NCS Release].mp3",
+      "image": "assets/Albums/Maestro Chives, Egzod, Neoni - Royalty [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763142064440",
+      "title": "Control NCS",
+      "artist": "RIVAL,JEX",
+      "file": "Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].mp3",
+      "image": "assets/Albums/Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763142068253",
+      "title": "Mortals ft. Laura Brehm",
+      "artist": "Warriyo",
+      "file": "Warriyo, Laura Brehm - Mortals (feat. Laura Brehm) [NCS Release].mp3",
+      "image": "assets/Albums/Warriyo, Laura Brehm - Mortals (feat. Laura Brehm) [NCS Release].jpg"
+    },
+    {
+      "id": "local_1763145791973",
+      "title": "Superhero",
+      "artist": "Unknown Brain feat. Chris Linton",
+      "file": "Unknown Brain, Chris Linton - Superhero (feat. Chris Linton) [NCS Release].mp3",
+      "image": "assets/Albums/Unknown Brain, Chris Linton - Superhero (feat. Chris Linton) [NCS Release].jpg"
     }
   ],
   "artists": [
