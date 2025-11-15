@@ -283,6 +283,7 @@ main {
 
 .card {
     padding: 16px;
+    border: #159f31;
     border-radius: 25px;
     transition: background-color 0.3s ease;
     cursor: pointer;
@@ -298,13 +299,22 @@ main {
 .card-image {
     width: 100%;
     aspect-ratio: 1 / 1;
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0, 0.5);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .card-image.rounded {
     border-radius: 50%;
+}
+
+.card-image img{
+    border: none;
+    outline: none;
+    width: 100%;
+    object-fit: contain;
+    
 }
 
 .card-info h4 {
@@ -561,9 +571,18 @@ input[type=range]::-ms-thumb{
         max-width: 95%;
         justify-content: center;
     }
+
+    .tit{
+        font-size: 15px;
+    }
+
+    .alb{
+        width: 65px;
+        min-width: 65px;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 510px) {
     .greet {
         font-size: 18px;
     }
@@ -599,12 +618,15 @@ input[type=range]::-ms-thumb{
         left: 50%;
         transform: translateX(-50%);
         height: auto;
-        padding: 6px 10px;
+        padding: 5px 5px;
     }
 
     .media-control{
         width: min(360px, 100%);
         gap: 8px;
+    }
+    .alb{
+        height: 55px;
     }
 
     .size span{

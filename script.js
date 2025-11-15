@@ -1,4 +1,4 @@
-
+console.log("--- I AM RUNNING THE NEW FILE, VERSION 4 ---");
 // --- Pull-to-Refresh Logic ---
 (function initPullToRefresh() {
   // This targets your main scrolling content area
@@ -43,8 +43,11 @@ async function getSongs() {
   const getM = await fetch("./assets/songs.json")
   let text = await getM.json()
   let songs = text.songs
+  let artists = text.artists
+  // fetch artist also
+  console.log(artists[0].name)
   songs.forEach(song => {
-    console.log(song.file)
+    // console.log(song.file)
     const element = song.file
     if (element.endsWith(".mp3")){
       song.file =`./assets/Music/${element}`
@@ -52,14 +55,14 @@ async function getSongs() {
     
   });
   console.log(songs)
-return songs
+return {songs, artists}
 
 }
 // assets/Albums/Agar-Tum-Saath-Ho.jpg
 async function setupMusic() {
 
   let setMusicIndex = 0;
-  const songs = await getSongs();
+  const {songs, artists} = await getSongs();
   const myMusic = new Audio(songs[setMusicIndex].file);
   console.log(songs[setMusicIndex].file);
 
@@ -67,8 +70,9 @@ async function setupMusic() {
   const next = document.getElementById('next');
   const Before = document.getElementById('previous');
   const seeker = document.getElementById('SeekBar');
-  // for album img id dynamic
 
+
+  // for album img id dynamic
 const album = document.getElementById('player-art')
 const alb = songs[setMusicIndex].image
 const imgg = document.createElement('img')
@@ -79,7 +83,6 @@ album.innerHTML = ""
 album.appendChild(imgg)
 
 // for alubum title
-
 const tit = document.getElementById('player-title')
 const ti = document.createElement('b')
 ti.textContent = songs[setMusicIndex].title
@@ -105,8 +108,72 @@ Greet.innerHTML = ""
 Greet.appendChild(gt)
 
 
-// shuffle
+// cards item
+const cardContainer = document.getElementById('cards')
 
+
+cardContainer.innerHTML = ""
+
+const RandomSong = [...songs]
+for (let index = RandomSong.length - 1; index > 0; index--) {
+  const j = Math.floor(Math.random() * (index + 1))
+  const temp = RandomSong[index]
+  RandomSong[index] = RandomSong[j]
+  RandomSong[j] = temp
+}
+
+  const randomSong = RandomSong.slice(0, 6)
+
+randomSong.forEach(song => {
+    const Card =  document.createElement('div')
+    Card.className = "card song-card"
+
+    Card.innerHTML = `<div class="card-image">
+    <img src="${song.image}" alt=""></div>
+                             <div class="card-info">
+                             <h4>${song.title}</h4>
+                             <p>${song.artist}</p>
+                            </div>`
+  
+cardContainer.appendChild(Card)
+});
+
+// for future:- make it randomise every hour
+
+// for popular artists 
+
+const popA = document.getElementById('POP-artists')
+
+popA.innerHTML = ""
+
+const RandomArtist = [...artists]
+for (let index = RandomArtist.length - 1; index > 0; index--) {
+  const j = Math.floor(Math.random() * (index + 1))
+  const temp = RandomArtist[index]
+  RandomArtist[index] = RandomArtist[j]
+  RandomArtist[j] = temp
+}
+
+  const randomArtist = RandomArtist.slice(0, 6)
+
+randomArtist.forEach(artist => {
+    const CardforArtist=  document.createElement('div')
+    CardforArtist.className = "card artist-card"
+
+    CardforArtist.innerHTML = `<div class="card-image rounded">
+    <img src="${artist.image}" alt=""></div>
+                             <div class="card-info">
+                             <h4>${artist.name}</h4>
+                            </div>`
+  
+popA.appendChild(CardforArtist)
+});
+
+
+
+
+
+// shuffle
 const shuffle = document.getElementById('Shuffle')
 let isShuffle = false
 

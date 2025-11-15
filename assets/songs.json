@@ -1,107 +1,114 @@
 {
   "songs": [
+     {
+      "id": "local_1763142064440",
+      "title": "Control NCS",
+      "artist": "RIVAL,JEX",
+      "file": "Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].mp3",
+      "image": "assets/Albums/Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].jpg"
+    },
     {
       "id": "s1",
       "title": "Sgaana",
       "artist": "Artist Name",
       "file": "1.mp3",
-      "image": "assets/Albums/album1.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s2",
       "title": "Another Song",
       "artist": "Another Artist",
       "file": "2.mp3",
-      "image": "assets/Albums/album2.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "3.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "4.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "5.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "6.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "7.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "8.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "9.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "10.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "11.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "12.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "13.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "14.mp3",
-      "image": "assets/Albums/album3.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg"
     },
     {
       "id": "s3",
       "title": "Ae Dil Hai Muskil",
-      "artist": "The Musician",
+      "artist": "Arijit Singh",
       "file": "Ae-Dil-Hai-Mushkil.mp3",
       "image": "assets/Albums/Ae-Dil-Hai-Mushkil.jpg"
     },
@@ -259,13 +266,7 @@
       "file": "Maestro Chives, Egzod, Neoni - Royalty [NCS Release].mp3",
       "image": "assets/Albums/Maestro Chives, Egzod, Neoni - Royalty [NCS Release].jpg"
     },
-    {
-      "id": "local_1763142064440",
-      "title": "Control NCS",
-      "artist": "RIVAL,JEX",
-      "file": "Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].mp3",
-      "image": "assets/Albums/Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].jpg"
-    },
+   
     {
       "id": "local_1763142068253",
       "title": "Mortals ft. Laura Brehm",
@@ -284,14 +285,38 @@
   "artists": [
     {
       "id": "a1",
-      "name": "Artist Name",
-      "image": "assets/Albums/artist1.jpg",
+      "name": "Arijit Singh",
+      "image": "assets/Artists/Arijit Singh.jpg",
       "type": "Artist"
     },
     {
       "id": "a2",
-      "name": "Another Artist",
-      "image": "assets/Albums/artist2.jpg",
+      "name": "Vishal Mishra",
+      "image": "assets/Artists/Vishal Mishra.jpg",
+      "type": "Artist"
+    },
+    {
+      "id": "a3",
+      "name": "Alka Yagnik",
+      "image": "assets/Artists/Alka Yagnik.jpg",
+      "type": "Artist"
+    },
+    {
+      "id": "a1",
+      "name": "NCS",
+      "image": "assets/Artists/NCS.jpg",
+      "type": "Artist"
+    },
+    {
+      "id": "a1",
+      "name": "Faheem Abdullah",
+      "image": "assets/Artists/Faheem Abdullah.jpg",
+      "type": "Artist"
+    },
+    {
+      "id": "a1",
+      "name": "Honey Singh",
+      "image": "assets/Artists/Honey Singh.jpg",
       "type": "Artist"
     }
   ]
