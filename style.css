@@ -337,6 +337,7 @@ main {
     --h: var(--footer-height);
     position: fixed;
     bottom: 12px;
+    overflow: hidden;
     
     left: var(--sidebar-width);
     right: 0;
@@ -596,6 +597,12 @@ input[type=range]::-ms-thumb{
     .card {
         padding: 12px;
     }
+    .card-info h4 {
+        word-wrap: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
     .discover {
         flex-direction: column;
@@ -625,8 +632,12 @@ input[type=range]::-ms-thumb{
         width: min(360px, 100%);
         gap: 8px;
     }
+
+    .seekbar{
+        margin-bottom: 10px;
+    }
     .alb{
-        height: 55px;
+        height: 65px;
     }
 
     .size span{

@@ -109,33 +109,50 @@ Greet.appendChild(gt)
 
 
 // cards item
-const cardContainer = document.getElementById('cards')
+const cardContainer = document.getElementById('cards');
+cardContainer.innerHTML = "";
 
-
-cardContainer.innerHTML = ""
-
-const RandomSong = [...songs]
-for (let index = RandomSong.length - 1; index > 0; index--) {
-  const j = Math.floor(Math.random() * (index + 1))
-  const temp = RandomSong[index]
-  RandomSong[index] = RandomSong[j]
-  RandomSong[j] = temp
+const RandomSong = [...songs]; 
+for (let i = RandomSong.length - 1; i > 0; i--) { 
+ const j = Math.floor(Math.random() * (i + 1));
+ const temp = RandomSong[i];
+ RandomSong[i] = RandomSong[j];
+ RandomSong[j] = temp;
 }
 
-  const randomSong = RandomSong.slice(0, 6)
+const randomSong = RandomSong.slice(0, 6); 
 
-randomSong.forEach(song => {
-    const Card =  document.createElement('div')
-    Card.className = "card song-card"
+randomSong.forEach((song, index) => { 
+ const Card = document.createElement('div');
+ Card.className = "card song-card";
 
-    Card.innerHTML = `<div class="card-image">
-    <img src="${song.image}" alt=""></div>
+ Card.innerHTML = `<div class="card-image">
+  <img src="${song.image}" alt="${song.title}"></div>
                              <div class="card-info">
                              <h4>${song.title}</h4>
-                             <p>${song.artist}</p>
-                            </div>`
-  
-cardContainer.appendChild(Card)
+                            <p>${song.artist}</p>
+                             </div>`;
+ 
+Card.addEventListener('click', () => {
+       console.log(`song of index ${index} (in random list) and title ${song.title}`);
+
+        const originalIndexInFullList = songs.findIndex(s => s.file === song.file);
+
+        if (originalIndexInFullList !== -1) { 
+            setMusicIndex = originalIndexInFullList; 
+           
+            myMusic.src = song.file; 
+            myMusic.load();
+            myMusic.play();
+
+            imgg.src = `./${song.image}`; 
+            ti.textContent = song.title; 
+        } else {
+            console.error("Error: Clicked song not found in the original song list. Cannot play.");
+        }
+    });
+    cardContainer.appendChild(Card);
+
 });
 
 // for future:- make it randomise every hour
@@ -168,8 +185,6 @@ randomArtist.forEach(artist => {
   
 popA.appendChild(CardforArtist)
 });
-
-
 
 
 
