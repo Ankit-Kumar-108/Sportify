@@ -7,17 +7,14 @@
     <title>Mantra</title>
     <link rel="stylesheet" href="style.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-     <!-- ----====+====----- -->
-</head>
+    </head>
 
 <body>
-    
+
     <main>
-        <!-- SECTION 1: Sidebar Navigation -->
         <div class="section1">
             <div class="web">
                 <div class="logo">
-                    <!-- Placeholder for logo if image fails to load -->
                     <span class="material-symbols-outlined" style="color: black;">graphic_eq</span>
                 </div>
                 <div class="name"><b>Mantra</b></div>
@@ -47,9 +44,7 @@
             </div>
         </div>
 
-        <!-- SECTION 2: Main Content Area -->
         <div class="section2">
-            <!-- Header -->
             <div class="header-element">
                 <div class="left-header">
                     <div class="on-media">
@@ -67,33 +62,31 @@
                 </div>
             </div>
 
-    <div class="mainArtistpg" style="display: none;">
-    <div class="artistpg">
-        
-        <button id="artist-back-btn">
-            <span class="material-symbols-outlined">arrow_back</span>
-        </button>
+            <div class="mainArtistpg" style="display: none;">
+                <div class="artistpg">
 
-        <div class="ArtistProfilePic">
-            <img src="assets/Artists/arjit.jpeg" alt="Artist" />
-        </div>
-        <div class="ArtistName">
-            <h4>Artist Name</h4>
-            <p>150,000,000 Monthly Listeners</p>
-        </div>
-    </div>
-    <div class="lowerbd">
-        <div class="SongSung">
-            <h2>Popular</h2>
-        </div>
-        <div class="items-grid" id="artist-song-grid">
+                    <button id="artist-back-btn">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </button>
+
+                    <div class="ArtistProfilePic">
+                        <img src="assets/Artists/arjit.jpeg" alt="Artist" />
+                    </div>
+                    <div class="ArtistName">
+                        <h4>Artist Name</h4>
+                        <p>150,000,000 Monthly Listeners</p>
+                    </div>
+                </div>
+                <div class="lowerbd">
+                    <div class="SongSung">
+                        <h2>Popular</h2>
+                    </div>
+                    <div class="items-grid" id="artist-song-grid">
+                    </div>
+                </div>
             </div>
-    </div>
-</div>
 
-            <!-- Main Viewport -->
             <div class="viewport">
-                <!-- Hero Section -->
                 <div class="discover" id="weekly-discover">
                     <div class="txtbtn">
                         <div class="title">
@@ -112,195 +105,170 @@
                     </div>
                 </div>
 
-                <!-- Trending Songs Section -->
                 <section class="content-section Trending">
-                    <h2>Trending Songs</h2>
+                    <h2 id="songs-section-title">Trending Songs</h2>
                     <div class="items-grid" id="cards">
-                        <!-- Repeat for more items -->
-                        <!-- <div class="card song-card" id="card">
-                            <div class="card-image" id="card-img"></div>
-                            <div class="card-info" id="card-info">
-                                <h4>Song Title</h4>
-                                <p>Artist Name</p>
-                            </div>
                         </div>
-                        <div class="card song-card">
-                            <div class="card-image"></div>
-                            <div class="card-info">
-                                <h4>Song Title</h4>
-                                <p>Artist Name</p>
-                            </div>
-                        </div>
-                        <div class="card song-card">
-                            <div class="card-image"></div>
-                            <div class="card-info">
-                                <h4>Song Title</h4>
-                                <p>Artist Name</p>
-                            </div>
-                        </div>
-                        <div class="card song-card">
-                            <div class="card-image"></div>
-                            <div class="card-info">
-                                <h4>Song Title</h4>
-                                <p>Artist Name</p>
-                            </div>
-                        </div>
-                        <div class="card song-card">
-                            <div class="card-image"></div>
-                            <div class="card-info">
-                                <h4>Song Title</h4>
-                                <p>Artist Name</p>
-                            </div>
-                        </div>
-                        <div class="card song-card">
-                            <div class="card-image"></div>
-                            <div class="card-info">
-                                <h4>Song Title</h4>
-                                <p>Artist Name</p>
-                            </div>
-                        </div> -->
-                    </div>
                 </section>
 
-                <!-- Popular Artists Section -->
                 <section class="content-section POP-Artists">
                     <h2>Popular Artists</h2>
                     <div class="items-grid" id="POP-artists">
-                        <div class="card artist-card">
-                            <div class="card-image rounded"></div>
-                            <div class="card-info">
-                                <h4>Artist Name</h4>
-                                <p>Artist</p>
-                            </div>
                         </div>
-                        <div class="card artist-card">
-                            <div class="card-image rounded"></div>
-                            <div class="card-info">
-                                <h4>Artist Name</h4>
-                                <p>Artist</p>
-                            </div>
-                        </div>
-                        <div class="card artist-card">
-                            <div class="card-image rounded"></div>
-                            <div class="card-info">
-                                <h4>Artist Name</h4>
-                                <p>Artist</p>
-                            </div>
-                        </div>
-                        <div class="card artist-card">
-                            <div class="card-image rounded"></div>
-                            <div class="card-info">
-                                <h4>Artist Name</h4>
-                                <p>Artist</p>
-                            </div>
-                        </div>
-                        <div class="card artist-card">
-                            <div class="card-image rounded"></div>
-                            <div class="card-info">
-                                <h4>Artist Name</h4>
-                                <p>Artist</p>
-                            </div>
-                        </div>
-                    </div>
                 </section>
 
-                <!-- Radio Section -->
                 <section class="content-section radio">
                     <h2>Popular Radio</h2>
-                    <div class="items-grid">
-                        <div class="card radio-card">
-                            <div class="card-image"></div>
+                    <div class="items-grid" id="radio-grid">
+
+                        <div class="card radio-card" id="Bhakti">
+                            <div class="card-image">
+                                <img src="assets/Radio/Bhakti.jpg" alt="Bhakti Station">
+                            </div>
                             <div class="card-info">
-                                <h4>Station Name</h4>
+                                <h4>Station Bhakti</h4>
                                 <p>By Mantra</p>
                             </div>
                         </div>
-                        <div class="card radio-card">
-                            <div class="card-image"></div>
+
+                        <div class="card radio-card" id="Hip-Hop">
+                            <div class="card-image">
+                                <img src="assets/Radio/Hip-Hop.jpg" alt="Hip-Hop Station">
+                            </div>
                             <div class="card-info">
-                                <h4>Station Name</h4>
+                                <h4>Station Hip-Hop</h4>
                                 <p>By Mantra</p>
                             </div>
                         </div>
-                        <div class="card radio-card">
-                            <div class="card-image"></div>
+
+                        <div class="card radio-card" id="Romance">
+                            <div class="card-image">
+                                <img src="assets/Radio/Romance.jpg" alt="Romance Station">
+                            </div>
                             <div class="card-info">
-                                <h4>Station Name</h4>
+                                <h4>Station Romance</h4>
                                 <p>By Mantra</p>
                             </div>
                         </div>
-                        <div class="card radio-card">
-                            <div class="card-image"></div>
+
+                        <div class="card radio-card" id="NCS">
+                            <div class="card-image">
+                                <img src="assets/Radio/NCS.jpg" alt="NCS Station">
+                            </div>
                             <div class="card-info">
-                                <h4>Station Name</h4>
+                                <h4>Station NCS</h4>
+                                <p>By NCS</p>
+                            </div>
+                        </div>
+
+                        <div class="card radio-card" id="Sad">
+                            <div class="card-image">
+                                <img src="assets/Radio/Sad.jpg" alt="Sad Station">
+                            </div>
+                            <div class="card-info">
+                                <h4>Station Sad</h4>
                                 <p>By Mantra</p>
                             </div>
                         </div>
-                        <div class="card radio-card">
-                            <div class="card-image"></div>
+
+                        <div class="card radio-card" id="CheerFul">
+                            <div class="card-image">
+                                <img src="assets/Radio/Cheerful.jpg" alt="Cheerful Station">
+                            </div>
                             <div class="card-info">
-                                <h4>Station Name</h4>
+                                <h4>Station Cheerful</h4>
                                 <p>By Mantra</p>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- UPDATED: Moved seekbar inside content-bottom -->
-                <section class="content-bottom">
-    <div class="seekbar">
-        <input type="range" name="SeekBar" id="SeekBar" min="0" value="0" max="100">
-    </div>
-    <div class="media-control">
-        <div class="mini-al">
-            
-            <div class="alb" id="player-art">
-                </div>
-
-            <div class="tit" id="player-title">
-                </div>
-
-        </div>
-        <div style="display: flex;gap: 10px;margin-right: 10px;">
-        <div class="previous size">
-            <span class="material-symbols-outlined" id="previous">arrow_left</span>
-        </div>
-        <div class="play size" id="play-pause">
-            <span class="material-symbols-outlined">play_pause</span>
-        </div>
-        <div class="next size" id="next">
-            <span class="material-symbols-outlined">arrow_right</span>
-        </div>
-       
-        <div class="shuffle size" id="Shuffle">
-            <span class="material-symbols-outlined">shuffle</span>
-        </div>
-        </div>
-    </div>
-</section>
                 
+                <section class="content-bottom">
+                    <div class="seekbar">
+                        <input type="range" name="SeekBar" id="SeekBar" min="0" value="0" max="100">
+                    </div>
+                    <div class="media-control">
+                        <div class="mini-al">
+
+                            <div class="alb" id="player-art">
+                            </div>
+
+                            <div class="tit" id="player-title">
+                            </div>
+
+                        </div>
+                        <div style="display: flex;gap: 10px;margin-right: 10px;">
+                            <div class="previous size">
+                                <span class="material-symbols-outlined" id="previous">arrow_left</span>
+                            </div>
+                            <div class="play size" id="play-pause">
+                                <span class="material-symbols-outlined">play_pause</span>
+                            </div>
+                            <div class="next size" id="next">
+                                <span class="material-symbols-outlined">arrow_right</span>
+                            </div>
+
+                            <div class="shuffle size" id="Shuffle">
+                                <span class="material-symbols-outlined">shuffle</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </div> <div id="playlist-view" style="display: none;">
+                
+                <div class="playlist-header">
+                    
+                    <button id="playlist-back-btn"
+                        style="position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.3); border: none; border-radius: 50%; width: 40px; height: 40px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </button>
+                    
+                    <div class="playlist-img" id="pl-img">
+                        </div>
+                    <div class="playlist-details">
+                        <span class="pl-type">Playlist</span>
+                        <h1 id="pl-title">Station Title</h1>
+                        <p id="pl-desc">Description or Artist</p>
+                        <div class="playlist-actions">
+                            <button class="play-button" id="pl-play-btn">
+                                <span class="material-symbols-outlined">play_arrow</span> Play
+                            </button>
+                        </div>
+                    </div>
+                </div> <div class="playlist-songs">
+                    <div class="song-list-header">
+                        <span>#</span>
+                        <span>Title</span>
+                        <span>Artist</span>
+                        <span><span class="material-symbols-outlined">schedule</span></span>
+                    </div>
+                    <div id="pl-songs-container">
+                        </div>
+                </div>
+
             </div>
-        </div>
-    </main>
-        <script>
-            (function(){
-                const seek = document.getElementById('SeekBar');
-                if(!seek) return;
-                function updateSeekBg(){
-                    const min = parseFloat(seek.min) || 0;
-                    const max = parseFloat(seek.max) || 1;
-                    const val = parseFloat(seek.value) || 0;
-                    const pct = Math.max(0, Math.min(100, (val - min) / (max - min) * 100));
-                    seek.style.background = `linear-gradient(90deg, #fff ${pct}%, rgba(255,255,255,0.18) ${pct}%)`;
-                }
-                seek.addEventListener('input', updateSeekBg, {passive:true});
-                // ensure correct initial appearance
-                if (document.readyState === 'loading') {
-                    window.addEventListener('DOMContentLoaded', updateSeekBg);
-                } else {
-                    updateSeekBg();
-                }
-            })();
-        </script>
+            </div> </main>
+    <script>
+        (function () {
+            const seek = document.getElementById('SeekBar');
+            if (!seek) return;
+            function updateSeekBg() {
+                const min = parseFloat(seek.min) || 0;
+                const max = parseFloat(seek.max) || 1;
+                const val = parseFloat(seek.value) || 0;
+                const pct = Math.max(0, Math.min(100, (val - min) / (max - min) * 100));
+                seek.style.background = `linear-gradient(90deg, #fff ${pct}%, rgba(255,255,255,0.18) ${pct}%)`;
+            }
+            seek.addEventListener('input', updateSeekBg, { passive: true });
+            // ensure correct initial appearance
+            if (document.readyState === 'loading') {
+                window.addEventListener('DOMContentLoaded', updateSeekBg);
+            } else {
+                updateSeekBg();
+            }
+        })();
+    </script>
 </body>
 <script type="module" src="script.js"></script>
 

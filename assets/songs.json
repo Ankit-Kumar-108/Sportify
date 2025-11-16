@@ -1,4 +1,3 @@
-
 {
   "songs": [
     {
@@ -6,280 +5,320 @@
       "title": "Control NCS",
       "artist": "RIVAL, JEX, NCS",
       "file": "Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].mp3",
-      "image": "assets/Albums/Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].jpg"
+      "image": "assets/Albums/Unknown Brain, Rival, Jex - Control (feat. Jex) [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "s1",
       "title": "Sgaana",
       "artist": "Artist Name",
       "file": "1.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s2",
       "title": "Another Song",
       "artist": "Another Artist",
       "file": "2.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "3.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "4.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "5.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "6.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "7.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "8.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "9.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "10.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "11.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "12.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "13.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Tune Three",
       "artist": "The Musician",
       "file": "14.mp3",
-      "image": "assets/Albums/Mantra Placeholder.jpg"
+      "image": "assets/Albums/Mantra Placeholder.jpg",
+      "genre": "Bhakti"
     },
     {
       "id": "s3",
       "title": "Ae Dil Hai Muskil",
       "artist": "Arijit Singh",
       "file": "Ae-Dil-Hai-Mushkil.mp3",
-      "image": "assets/Albums/Ae-Dil-Hai-Mushkil.jpg"
+      "image": "assets/Albums/Ae-Dil-Hai-Mushkil.jpg",
+      "genre": "Romance"
     },
     {
       "id": "s3",
       "title": "Agar TumSaath Ho",
       "artist": "Arijit Singh, Alka Yagnik",
       "file": "Agar-tum-saath-Ho.mp3",
-      "image": "assets/Albums/Agar-Tum-Saath-Ho.jpg"
+      "image": "assets/Albums/Agar-Tum-Saath-Ho.jpg",
+      "genre": "Romance"
     },
     {
       "id": "s3",
       "title": "Dope Shope",
       "artist": "Honey Singh",
       "file": "Dope-Shope.mp3",
-      "image": "assets/Albums/Dope-Shope.jpg"
+      "image": "assets/Albums/Dope-Shope.jpg",
+      "genre": "Hip-Hop"
     },
     {
       "id": "s3",
       "title": "Saiyaara",
       "artist": "Faheem Abdullah",
       "file": "Saiyaara.mp3",
-      "image": "assets/Albums/Saiyaara.jpg"
+      "image": "assets/Albums/Saiyaara.jpg",
+      "genre": "Romance"
     },
     {
       "id": "s3",
       "title": "Tum Ho To",
       "artist": "Vishal Mishra",
       "file": "Tum Ho Toh.mp3",
-      "image": "assets/Albums/tum-ho-toh.jpg"
+      "image": "assets/Albums/tum-ho-toh.jpg",
+      "genre": "Romance"
     },
     {
       "id": "local_1763141955397",
       "title": "Cradles",
       "artist": "Sub Urban, NCS",
       "file": "Sub Urban - Cradles [NCS Release].mp3",
-      "image": "assets/Albums/Sub Urban - Cradles [NCS Release].jpg"
+      "image": "assets/Albums/Sub Urban - Cradles [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763141958860",
       "title": "Fearless",
       "artist": "TULE, NCS",
       "file": "TULE - Fearless [NCS Release].mp3",
-      "image": "assets/Albums/TULE - Fearless [NCS Release].jpg"
+      "image": "assets/Albums/TULE - Fearless [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763142017108",
       "title": "FearlessII",
       "artist": "TULE, CHRIS LINTON, NCS",
       "file": "TULE, Chris Linton - Fearless pt. II (feat. Chris Linton) [NCS Release].mp3",
-      "image": "assets/Albums/TULE, Chris Linton - Fearless pt. II (feat. Chris Linton) [NCS Release].jpg"
+      "image": "assets/Albums/TULE, Chris Linton - Fearless pt. II (feat. Chris Linton) [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763146508576",
       "title": "DreamsII",
       "artist": "LOST SKY, NCS",
       "file": "Lost Sky, Sara Skinner - Dreams pt. II (feat. Sara Skinner) [NCS Release].mp3",
-      "image": "assets/Albums/dreams-pt-ii-feat-sara-skinner-1586957095-ucmzLb3h13.jpg"
+      "image": "assets/Albums/Lost Sky, Sara Skinner - Dreams pt. II (feat. Sara Skinner) [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143655148",
-      "title": "Why We Lose",
+      "title": "Why We Lose NCS",
       "artist": "Coleman Trapp, Jéja, NCS",
       "file": "Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].mp3",
-      "image": "assets/Albums/Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].jpg"
+      "image": "assets/Albums/Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143698380",
       "title": "On & On NCS",
       "artist": "Daniel Levi, NCS",
       "file": "Cartoon, Daniel Levi, Jéja - On & On (feat. Daniel Levi) [NCS Release].mp3",
-      "image": "assets/Albums/Cartoon, Daniel Levi, Jéja - On & On (feat. Daniel Levi) [NCS Release].jpg"
+      "image": "assets/Albums/Cartoon, Daniel Levi, Jéja - On & On (feat. Daniel Levi) [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143721839",
       "title": "Invincible NCS",
       "artist": "DEAF KEV, NCS",
       "file": "DEAF KEV - Invincible [NCS Release].mp3",
-      "image": "assets/Albums/DEAF KEV - Invincible [NCS Release].jpg"
+      "image": "assets/Albums/DEAF KEV - Invincible [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143744898",
       "title": "Hellcat NCS ",
       "artist": "DESMEON, NCS",
       "file": "Desmeon - Hellcat [NCS Release].mp3",
-      "image": "assets/Albums/Desmeon - Hellcat [NCS Release].jpg"
+      "image": "assets/Albums/Desmeon - Hellcat [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1TERA_1763143790503",
       "title": "Nekozilla NCS",
       "artist": "Different Heaven, NCS",
       "file": "Different Heaven - Nekozilla [NCS Release].mp3",
-      "image": "assets/Albums/Different Heaven - Nekozilla [NCS Release].jpg"
+      "image": "assets/Albums/Different Heaven - Nekozilla [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143861960",
       "title": "My Heart NCS",
       "artist": "Different Heaven & EH!DE, NCS",
       "file": "Different Heaven, EH!DE - My Heart [NCS Release].mp3",
-      "image": "assets/Albums/Different Heaven, EH!DE - My Heart [NCS Release].jpg"
+      "image": "assets/Albums/Different Heaven, EH!DE - My Heart [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143888103",
       "title": "Blank NCS",
       "artist": "Disfigure, NCS",
       "file": "Disfigure - Blank [NCS Release].mp3",
-      "image": "assets/Albums/Disfigure - Blank [NCS Release].jpg"
+      "image": "assets/Albums/Disfigure - Blank [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143917107",
       "title": "Sky High NCS",
       "artist": "ELECKTRONIMIA, NCS",
       "file": "Elektronomia - Sky High [NCS Release].mp3",
-      "image": "assets/Albums/Elektronomia - Sky High [NCS Release].jpg"
+      "image": "assets/Albums/Elektronomia - Sky High [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143951647",
-      "title": "Heroes Tonight",
+      "title": "Heroes Tonight NCS",
       "artist": "JANJI, NCS",
       "file": "Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].mp3",
-      "image": "assets/Albums/Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].jpg"
+      "image": "assets/Albums/Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763143977201",
       "title": "Firefly NCS",
       "artist": "Jim Yosef, NCS",
       "file": "Jim Yosef - Firefly [NCS Release].mp3",
-      "image": "assets/Albums/Jim Yosef - Firefly [NCS Release].jpg"
+      "image": "assets/Albums/Jim Yosef - Firefly [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763144011456",
       "title": "Firefly II NCS",
       "artist": "Jim Yosef, NCS",
       "file": "Jim Yosef - Firefly pt. II [NCS Release].mp3",
-      "image": "assets/Albums/Jim Yosef - Firefly pt. II [NCS Release].jpg"
+      "image": "assets/Albums/Jim Yosef - Firefly pt. II [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763144074961",
       "title": "Link NCS",
       "artist": "Jim Yosef, NCS",
       "file": "Jim Yosef - Link [NCS Release].mp3",
-      "image": "assets/Albums/Jim Yosef - Link [NCS Release].jpg"
+      "image": "assets/Albums/Jim Yosef - Link [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763144102312",
       "title": "Lost Sky ",
       "artist": "LOST SKY, NCS",
       "file": "Lost Sky - Dreams [NCS Release].mp3",
-      "image": "assets/Albums/Lost Sky - Dreams [NCS Release].jpg"
+      "image": "assets/Albums/Lost Sky - Dreams [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763144117514",
       "title": "Royalty NCS",
       "artist": "Egzod & Maestro Chives, NCS",
       "file": "Maestro Chives, Egzod, Neoni - Royalty [NCS Release].mp3",
-      "image": "assets/Albums/Maestro Chives, Egzod, Neoni - Royalty [NCS Release].jpg"
+      "image": "assets/Albums/Maestro Chives, Egzod, Neoni - Royalty [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763142068253",
       "title": "Mortals",
       "artist": "Warriyo, NCS",
       "file": "Warriyo, Laura Brehm - Mortals (feat. Laura Brehm) [NCS Release].mp3",
-      "image": "assets/Albums/Warriyo, Laura Brehm - Mortals (feat. Laura Brehm) [NCS Release].jpg"
+      "image": "assets/Albums/Warriyo, Laura Brehm - Mortals (feat. Laura Brehm) [NCS Release].jpg",
+      "genre": "NCS"
     },
     {
       "id": "local_1763145791973",
       "title": "Superhero",
       "artist": "Unknown Brain feat. Chris Linton, NCS",
       "file": "Unknown Brain, Chris Linton - Superhero (feat. Chris Linton) [NCS Release].mp3",
-      "image": "assets/Albums/Unknown Brain, Chris Linton - Superhero (feat. Chris Linton) [NCS Release].jpg"
+      "image": "assets/Albums/Unknown Brain, Chris Linton - Superhero (feat. Chris Linton) [NCS Release].jpg",
+      "genre": "NCS"
     }
   ],
   "artists": [

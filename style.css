@@ -413,6 +413,7 @@ main {
     outline: none;
     width: 100%;
     object-fit: contain;
+    border-radius: 10px;
     
 }
 
@@ -547,6 +548,188 @@ input[type=range]::-moz-range-thumb{
     background: transparent;
     border: transparent;
     border-radius: 50%;
+}
+/* =================================== */
+/* == PLAYLIST PAGE STYLES == */
+/* =================================== */
+
+/* This is the main page container */
+#playlist-view {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* The top gradient header */
+.playlist-header {
+    display: flex;
+    align-items: flex-end; /* Aligns text bottom with image bottom */
+    gap: 24px;
+    padding: 40px;
+    position: relative;
+    /* Use the same consistent gradient */
+    background: linear-gradient(135deg, #159f31, #004d03);
+}
+
+/* Cover art image container */
+.playlist-img {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0; /* Prevents shrinking */
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    background-color: var(--bg-light); /* Placeholder color */
+}
+.playlist-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Container for all the text details */
+.playlist-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1; /* Fills remaining space */
+}
+.playlist-details .pl-type {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+}
+.playlist-details #pl-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+    line-height: 1.1;
+}
+.playlist-details #pl-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+.playlist-actions {
+    margin-top: 16px;
+    /* Your existing .play-button style will apply here */
+}
+
+/* Container for the song list below the header */
+.playlist-songs {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The header row for the song list */
+.song-list-header {
+    display: grid;
+    /* 4 columns: #, Title, Artist, Duration */
+    grid-template-columns: 24px 1fr 1fr 50px;
+    gap: 16px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.song-list-header span {
+    display: flex;
+    align-items: center;
+}
+/* Center the duration icon */
+.song-list-header span:last-child {
+    justify-self: center;
+    font-size: 18px; /* Makes icon clearer */
+}
+
+
+/* =================================== */
+/* == DYNAMIC SONG ROW STYLES == */
+/* =================================== */
+/* This is the style your JS will use to create each song row.
+   I've included it so your list looks correct. */
+
+.song-list-row {
+    display: grid;
+    /* Must match the header's columns */
+    grid-template-columns: 24px 1fr 1fr 50px;
+    gap: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.song-list-row:hover {
+    background-color: hsla(0, 0%, 100%, 0.118);
+}
+.song-list-row span {
+    display: flex;
+    align-items: center;
+    /* Truncate long text */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Style for each column in the song row */
+.song-list-row .song-index {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.song-list-row .song-title {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.song-list-row .song-artist {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.song-list-row .song-duration {
+    color: var(--text-secondary);
+    font-size: 14px;
+    justify-self: center; /* Center the duration text */
+}
+
+/* =================================== */
+/* == RESPONSIVE (MOBILE) STYLES == */
+/* =================================== */
+
+@media (max-width: 768px) {
+    .playlist-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .playlist-details #pl-title {
+        font-size: 32px;
+    }
+    .playlist-actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* On mobile, hide Artist and Duration */
+    .song-list-header {
+        grid-template-columns: 24px 1fr;
+    }
+    .song-list-header span:nth-child(3),
+    .song-list-header span:nth-child(4) {
+        display: none;
+    }
+
+    .song-list-row {
+        grid-template-columns: 24px 1fr;
+    }
+    .song-list-row .song-artist,
+    .song-list-row .song-duration {
+        display: none;
+    }
 }
 
 /* IE/Edge (legacy) */

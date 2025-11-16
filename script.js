@@ -62,6 +62,13 @@ return {songs, artists}
 async function setupMusic() {
 
   let setMusicIndex = 0;
+  
+  // NEW variables for Radio Mode
+  let isRadioMode = false;
+  let currentRadioGenre = null;
+  let radioQueue = []; // This will hold the shuffled genre-specific song list
+  let currentRadioQueueIndex = 0;
+
   const {songs, artists} = await getSongs();
   const myMusic = new Audio(songs[setMusicIndex].file);
   console.log(songs[setMusicIndex].file);
@@ -73,183 +80,289 @@ async function setupMusic() {
 
 
   // for album img id dynamic
-const album = document.getElementById('player-art')
-const alb = songs[setMusicIndex].image
-const imgg = document.createElement('img')
-console.log(alb)
-imgg.src =`./${alb}`
-imgg.style.width = "100%"
-album.innerHTML = ""
-album.appendChild(imgg)
+  const album = document.getElementById('player-art')
+  const alb = songs[setMusicIndex].image
+  const imgg = document.createElement('img')
+  console.log(alb)
+  imgg.src =`./${alb}`
+  imgg.style.width = "100%"
+  album.innerHTML = ""
+  album.appendChild(imgg)
 
-// for alubum title
-const tit = document.getElementById('player-title')
-const ti = document.createElement('b')
-ti.textContent = songs[setMusicIndex].title
-console.log("Title of the song", songs.title)
-tit.innerHTML = ""
-tit.appendChild(ti)
-
-
-// for greet
-const Greet = document.getElementById('greet')
-const gt = document.createElement('b')
-const tim = new Date
-const tim24 = tim.getHours()
-console.log("Current Time",tim24)
-if (tim24<12) {
-  gt.textContent = "Good Morning🌄"
-}else if (tim24<18) {
-  gt.textContent = "Good Afternoon☀️"
-} else {
-  gt.textContent = "Good Evening🌛"
-}
-Greet.innerHTML = ""
-Greet.appendChild(gt)
+  // for alubum title
+  const tit = document.getElementById('player-title')
+  const ti = document.createElement('b')
+  ti.textContent = songs[setMusicIndex].title
+  console.log("Title of the song", songs.title)
+  tit.innerHTML = ""
+  tit.appendChild(ti)
 
 
-// cards item
+  // for greet
+  const Greet = document.getElementById('greet')
+  const gt = document.createElement('b')
+  const tim = new Date
+  const tim24 = tim.getHours()
+  console.log("Current Time",tim24)
+  if (tim24<12) {
+    gt.textContent = "Good Morning🌄"
+  }else if (tim24<18) {
+    gt.textContent = "Good Afternoon☀️"
+  } else {
+    gt.textContent = "Good Evening🌛"
+  }
+  Greet.innerHTML = ""
+  Greet.appendChild(gt)
 
-function displaySongs(songLists, Container) {
-  Container.innerHTML = ""
-songLists.forEach(song => { 
- const Card = document.createElement('div');
- Card.className = "card song-card";
 
- Card.innerHTML = `<div class="card-image">
-  <img src="${song.image}" alt="${song.title}"></div>
-                             <div class="card-info">
-                             <h4>${song.title}</h4>
-                            <p>${song.artist}</p>
-                             </div>`;
- 
-Card.addEventListener('click', () => {
-       console.log(`This titled song ${song.title} is clicked`);
+  // --- Reusable Function to display SONG CARDS ---
+  function displaySongs(songLists, Container) {
+    Container.innerHTML = ""
+    songLists.forEach(song => { 
+      const Card = document.createElement('div');
+      Card.className = "card song-card";
 
+      Card.innerHTML = `<div class="card-image">
+        <img src="${song.image}" alt="${song.title}"></div>
+                                  <div class="card-info">
+                                  <h4>${song.title}</h4>
+                                  <p>${song.artist}</p>
+                                  </div>`;
+      
+      Card.addEventListener('click', () => {
+          isRadioMode = false; // Turn off radio mode
+          console.log(`This titled song ${song.title} is clicked`);
+
+          const originalIndexInFullList = songs.findIndex(s => s.file === song.file);
+
+          if (originalIndexInFullList !== -1) { 
+              setMusicIndex = originalIndexInFullList; 
+              
+              myMusic.src = song.file; 
+              myMusic.load();
+              myMusic.play();
+
+              imgg.src = `./${song.image}`; 
+              ti.textContent = song.title; 
+          } else {
+              console.error("Error: Clicked song not found in the original song list. Cannot play.");
+          }
+      });
+      Container.appendChild(Card);
+    });
+  }
+
+  // --- Reusable Function to display SONG ROWS (for playlist) ---
+  function displaySongRows(songList, container) {
+    container.innerHTML = ""; // Clear old songs
+
+    songList.forEach((song, index) => {
+      const row = document.createElement('div');
+      row.className = 'song-list-row';
+      
+      // This HTML matches your CSS
+      row.innerHTML = `
+        <span class="song-index">${index + 1}</span>
+        <span class="song-title">${song.title}</span>
+        <span class="song-artist">${song.artist}</span>
+        <span class="song-duration"></span> 
+      `; // We will get real duration later
+
+      // Add click listener to play the song
+      row.addEventListener('click', () => {
+        isRadioMode = false; // Clicking a specific song stops radio mode
+        
         const originalIndexInFullList = songs.findIndex(s => s.file === song.file);
-
-        if (originalIndexInFullList !== -1) { 
-            setMusicIndex = originalIndexInFullList; 
-           
-            myMusic.src = song.file; 
-            myMusic.load();
-            myMusic.play();
-
-            imgg.src = `./${song.image}`; 
-            ti.textContent = song.title; 
-        } else {
-            console.error("Error: Clicked song not found in the original song list. Cannot play.");
+        if (originalIndexInFullList !== -1) {
+          setMusicIndex = originalIndexInFullList;
+          myMusic.src = song.file;
+          myMusic.load();
+          myMusic.play();
+          imgg.src = `./${song.image}`;
+          ti.textContent = song.title;
         }
-    });
-    Container.appendChild(Card);
+      });
 
-});
-}
-const cardContainer = document.getElementById('cards');
+      container.appendChild(row);
+    });
+  }
 
-const RandomSong = [...songs]; 
-for (let i = RandomSong.length - 1; i > 0; i--) { 
- const j = Math.floor(Math.random() * (i + 1));
- const temp = RandomSong[i];
- RandomSong[i] = RandomSong[j];
- RandomSong[j] = temp;
-}
 
-const randomSong = RandomSong.slice(0, 6); 
+  // --- Load Trending Songs on Page Load ---
+  const cardContainer = document.getElementById('cards');
 
-displaySongs(randomSong, cardContainer)
-// for future:- make it randomise every hour
-// for artist page
-  
-  // NEW references for your page-switching logic
+  const RandomSong = [...songs]; 
+  for (let i = RandomSong.length - 1; i > 0; i--) { 
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = RandomSong[i];
+    RandomSong[i] = RandomSong[j];
+    RandomSong[j] = temp;
+  }
+  const randomSong = RandomSong.slice(0, 6); 
+
+  displaySongs(randomSong, cardContainer)
+
+
+  // --- Page Switching & Artist Page Logic ---
   const viewport = document.querySelector('.viewport');
   const artistPage = document.querySelector('.mainArtistpg');
   const artistBackBtn = document.getElementById('artist-back-btn');
-  
-  // References for the elements ON the artist page
   const artistPic = document.querySelector('.ArtistProfilePic');
   const artistNameEl = document.querySelector('.ArtistName');
   const artistSongGrid = document.getElementById('artist-song-grid');
 
+  // NEW references for the Playlist (Radio) page
+  const playlistView = document.getElementById('playlist-view');
+  const playlistBackBtn = document.getElementById('playlist-back-btn');
+  const plImg = document.getElementById('pl-img');
+  const plTitle = document.getElementById('pl-title');
+  const plDesc = document.getElementById('pl-desc');
+  const plPlayBtn = document.getElementById('pl-play-btn');
+  const plSongsContainer = document.getElementById('pl-songs-container');
+
+  // Back button for Artist Page
   artistBackBtn.addEventListener('click',()=>{
     viewport.style.display = "flex"
     artistPage.style.display = "none"
   })
 
-// for popular artists 
+  // Back button for Playlist Page
+  playlistBackBtn.addEventListener('click', () => {
+    viewport.style.display = 'flex'; // Show main page
+    playlistView.style.display = 'none'; // Hide playlist page
+    isRadioMode = false; // Stop radio mode when going back
+  });
 
-const popA = document.getElementById('POP-artists')
 
-popA.innerHTML = ""
+  // --- Popular Artists Logic ---
+  const popA = document.getElementById('POP-artists')
+  popA.innerHTML = ""
 
-const RandomArtist = [...artists]
-for (let index = RandomArtist.length - 1; index > 0; index--) {
-  const j = Math.floor(Math.random() * (index + 1))
-  const temp = RandomArtist[index]
-  RandomArtist[index] = RandomArtist[j]
-  RandomArtist[j] = temp
-}
-
+  const RandomArtist = [...artists]
+  for (let index = RandomArtist.length - 1; index > 0; index--) {
+    const j = Math.floor(Math.random() * (index + 1))
+    const temp = RandomArtist[index]
+    RandomArtist[index] = RandomArtist[j]
+    RandomArtist[j] = temp
+  }
   const randomArtist = RandomArtist.slice(0, 6)
 
-randomArtist.forEach(artist => {
-    const CardforArtist=  document.createElement('div')
-    CardforArtist.className = "card artist-card"
+  randomArtist.forEach(artist => {
+      const CardforArtist=  document.createElement('div')
+      CardforArtist.className = "card artist-card"
 
-    CardforArtist.innerHTML = `<div class="card-image rounded">
-    <img src="${artist.image}" alt=""></div>
-                             <div class="card-info">
-                             <h4>${artist.name}</h4>
-                            </div>`
-  
-CardforArtist.addEventListener('click',()=>{
-  viewport.style.display = "none"
-  artistPage.style.display = "flex"
-
-  const imgeforpro = document.createElement('img')
-  imgeforpro.src = artist.image
-  artistPic.innerHTML =""
-  imgeforpro.style.width = "100%";
-  imgeforpro.style.height = "100%";
-  imgeforpro.style.objectFit = "cover";
-  artistPic.appendChild(imgeforpro)
-
-const naam = document.createElement('h4')
-  naam.textContent = artist.name
-  artistNameEl.innerHTML = ""
-  artistNameEl.appendChild(naam)
-
-
- const ArtistsSong = songs.filter(song => (song.artist).includes(artist.name))
- displaySongs(ArtistsSong, artistSongGrid)
-})
-  
-popA.appendChild(CardforArtist)
-
-});
-
-
-
-// shuffle
-const shuffle = document.getElementById('Shuffle')
-let isShuffle = false
-
-shuffle.addEventListener('click', ()=>{
-  isShuffle = !isShuffle
-  
-  if (isShuffle){
-    shuffle.innerHTML = ' <span class="material-symbols-outlined" style = "background-color: greenyellow;;">shuffle</span>'
-  }else{
-    shuffle.innerHTML = '<span class="material-symbols-outlined">shuffle</span>'
+      CardforArtist.innerHTML = `<div class="card-image rounded">
+      <img src="${artist.image}" alt=""></div>
+                              <div class="card-info">
+                              <h4>${artist.name}</h4>
+                              </div>`
     
-  }
-  console.log( isShuffle ? "on":"off")
-})
+    CardforArtist.addEventListener('click',()=>{
+      viewport.style.display = "none"
+      artistPage.style.display = "flex"
+
+      const imgeforpro = document.createElement('img')
+      imgeforpro.src = artist.image
+      artistPic.innerHTML =""
+      imgeforpro.style.width = "100%";
+      imgeforpro.style.height = "100%";
+      imgeforpro.style.objectFit = "cover";
+      artistPic.appendChild(imgeforpro)
+
+      const naam = document.createElement('h4')
+      naam.textContent = artist.name
+      artistNameEl.innerHTML = ""
+      artistNameEl.appendChild(naam)
+
+      const ArtistsSong = songs.filter(song => (song.artist).includes(artist.name))
+      displaySongs(ArtistsSong, artistSongGrid)
+    })
+    
+  popA.appendChild(CardforArtist)
+  });
 
 
+  // --- Radio Card Logic ---
+  const radioCards = document.querySelectorAll('.radio-card');
+
+  radioCards.forEach(card => {
+    card.addEventListener('click', () => {
+      // Get genre from the card's ID
+      const genre = card.id; 
+      currentRadioGenre = genre; // Store this for the play button
+      
+      // Get image source
+      const genreImage = card.querySelector('img').src;
+      
+      // Filter songs by this genre
+      const genreSongs = songs.filter(song => song.genre === genre);
+
+      // 1. Populate the playlist header
+      plImg.innerHTML = `<img src="${genreImage}" alt="${genre}">`;
+      plTitle.textContent = `${genre} Radio`;
+      plDesc.textContent = `Your personal station for ${genre} music.`;
+
+      // 2. Populate the song list
+      displaySongRows(genreSongs, plSongsContainer);
+
+      // 3. Switch views
+      viewport.style.display = 'none';
+      playlistView.style.display = 'flex';
+    });
+  });
+
+  // Playlist "Play" button logic
+  plPlayBtn.addEventListener('click', () => {
+    isRadioMode = true; // Turn on Radio Mode!
+    
+    // Get all songs for the current genre
+    let genreSongs = songs.filter(song => song.genre === currentRadioGenre);
+    
+    // Shuffle them to create a radio queue
+    for (let i = genreSongs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [genreSongs[i], genreSongs[j]] = [genreSongs[j], genreSongs[i]];
+    }
+    
+    radioQueue = genreSongs; // Store the shuffled queue
+    currentRadioQueueIndex = 0; // Reset the queue index
+
+    // 3. Start playing the first song from the queue
+    if (radioQueue.length > 0) {
+        const firstSong = radioQueue[currentRadioQueueIndex];
+        setMusicIndex = songs.findIndex(s => s.file === firstSong.file);
+        
+        if (setMusicIndex !== -1) {
+            myMusic.src = firstSong.file;
+            myMusic.load();
+            myMusic.play();
+            imgg.src = firstSong.image;
+            ti.textContent = firstSong.title;
+        }
+    } else {
+        console.log(`No songs found for genre: ${currentRadioGenre}`);
+    }
+  });
 
 
-// leave it, its for seekbar  ---start--- 
+  // --- Shuffle Button Logic ---
+  const shuffle = document.getElementById('Shuffle')
+  let isShuffle = false
+
+  shuffle.addEventListener('click', ()=>{
+    isShuffle = !isShuffle
+    
+    if (isShuffle){
+      shuffle.innerHTML = ' <span class="material-symbols-outlined" style = "background-color: greenyellow;;">shuffle</span>'
+    }else{
+      shuffle.innerHTML = '<span class="material-symbols-outlined">shuffle</span>'
+      
+    }
+    console.log( isShuffle ? "on":"off")
+  })
+
+
+  // --- Seekbar Logic ---
   function updateSeekBg() {
     if (!seeker) return;
     const min = parseFloat(seeker.min) || 0;
@@ -260,8 +373,7 @@ shuffle.addEventListener('click', ()=>{
     
     seeker.style.background = `linear-gradient(90deg, #fff ${pct}%, rgba(255,255,255,0.18) ${pct}%)`;
   }
- 
-
+  
   myMusic.addEventListener('loadedmetadata', () => {
     seeker.max = myMusic.duration;
     updateSeekBg(); 
@@ -277,7 +389,8 @@ shuffle.addEventListener('click', ()=>{
     updateSeekBg();
   });
 
-// ----end----
+
+  // --- Play/Pause Button Logic ---
   start.addEventListener('click', () => {
     if (myMusic.paused) {
       myMusic.play();
@@ -290,82 +403,93 @@ shuffle.addEventListener('click', ()=>{
     }
   });
 
-
   myMusic.addEventListener('play',()=>{
         start.innerHTML = '<span class="material-symbols-outlined">pause</span>';
   })
 
   myMusic.addEventListener('pause',()=>{
-     start.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
+    start.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
   })
 
 
+  // --- UPDATED Next/Previous Button Logic ---
   next.addEventListener('click', () => {
     console.log('next is pressed');
     myMusic.pause();
-    let newIndex
-      // shuffle of next
-    if(isShuffle){
-      console.log("playing in random order")
-    do {
-      newIndex = Math.floor(Math.random()*songs.length)
-    } while (newIndex === setMusicIndex);
-      setMusicIndex = newIndex
-    }else{
-      console.log("playing in next order")
-    setMusicIndex = (setMusicIndex + 1) % songs.length;
+    let newIndex; // This will be the index from the MAIN songs array
+
+    if (isRadioMode) {
+        console.log("Playing next song in radio queue...");
+        // Increment radio index and loop around
+        currentRadioQueueIndex = (currentRadioQueueIndex + 1) % radioQueue.length;
+        const nextRadioSong = radioQueue[currentRadioQueueIndex];
+        // Find the song's real index in the main 'songs' array
+        newIndex = songs.findIndex(s => s.file === nextRadioSong.file);
+
+    } else if (isShuffle) {
+        console.log("playing in random order");
+        do {
+            newIndex = Math.floor(Math.random() * songs.length);
+        } while (newIndex === setMusicIndex);
+
+    } else {
+        console.log("playing in next order");
+        newIndex = (setMusicIndex + 1) % songs.length;
     }
-            // end shuffle
 
-    myMusic.src = songs[setMusicIndex].file;
-    console.log(setMusicIndex);
-
-    myMusic.load();
-    myMusic.play();
-    
-
-    imgg.src = songs[setMusicIndex].image
-    ti.textContent = songs[setMusicIndex].title
+    // Set the main index and play the song
+    if (newIndex !== -1) {
+        setMusicIndex = newIndex;
+        myMusic.src = songs[setMusicIndex].file;
+        myMusic.load();
+        myMusic.play();
+        imgg.src = songs[setMusicIndex].image;
+        ti.textContent = songs[setMusicIndex].title;
+    }
   });
 
   Before.addEventListener('click', () => {
     console.log("previous is pressed");
     myMusic.pause();
+    let newIndex; // This will be the index from the MAIN songs array
 
-    let newIndex;
-      // shuffle of previous
-    if(isShuffle){
-      console.log("playing in random order")
-    do {
-      newIndex = Math.floor(Math.random()*songs.length)
-    } while (newIndex === setMusicIndex);
-      setMusicIndex = newIndex
-    }else{
-      console.log("playing in previous order")
-    
-      setMusicIndex = (setMusicIndex - 1 + songs.length) % songs.length;
+    if (isRadioMode) {
+        console.log("Playing previous song in radio queue...");
+        // Decrement radio index and loop around
+        currentRadioQueueIndex = (currentRadioQueueIndex - 1 + radioQueue.length) % radioQueue.length;
+        const prevRadioSong = radioQueue[currentRadioQueueIndex];
+        // Find the song's real index in the main 'songs' array
+        newIndex = songs.findIndex(s => s.file === prevRadioSong.file);
+        
+    } else if (isShuffle) {
+        console.log("playing in random order");
+        do {
+            newIndex = Math.floor(Math.random() * songs.length);
+        } while (newIndex === setMusicIndex);
+
+    } else {
+        console.log("playing in previous order");
+        newIndex = (setMusicIndex - 1 + songs.length) % songs.length;
     }
-          //  end shuffle
-    myMusic.src = songs[setMusicIndex].file;
-    console.log(setMusicIndex);
 
-    myMusic.load();
-    myMusic.play();
-    
-
-    
-    imgg.src = songs[setMusicIndex].image
-     ti.textContent = songs[setMusicIndex].title
+    // Set the main index and play the song
+    if (newIndex !== -1) {
+        setMusicIndex = newIndex;
+        myMusic.src = songs[setMusicIndex].file;
+        myMusic.load();
+        myMusic.play();
+        imgg.src = songs[setMusicIndex].image;
+        ti.textContent = songs[setMusicIndex].title;
+    }
   });
-      // auto next clicker
-   myMusic.addEventListener('ended', ()=>{
+  
+  // auto next clicker
+  myMusic.addEventListener('ended', ()=>{
       console.log("auto next is triggred")
       next.click();
-   })
+  })
+
   updateSeekBg(); 
 }
+
 setupMusic();
-
-
-
-
