@@ -109,20 +109,10 @@ Greet.appendChild(gt)
 
 
 // cards item
-const cardContainer = document.getElementById('cards');
-cardContainer.innerHTML = "";
 
-const RandomSong = [...songs]; 
-for (let i = RandomSong.length - 1; i > 0; i--) { 
- const j = Math.floor(Math.random() * (i + 1));
- const temp = RandomSong[i];
- RandomSong[i] = RandomSong[j];
- RandomSong[j] = temp;
-}
-
-const randomSong = RandomSong.slice(0, 6); 
-
-randomSong.forEach((song, index) => { 
+function displaySongs(songLists, Container) {
+  Container.innerHTML = ""
+songLists.forEach(song => { 
  const Card = document.createElement('div');
  Card.className = "card song-card";
 
@@ -134,7 +124,7 @@ randomSong.forEach((song, index) => {
                              </div>`;
  
 Card.addEventListener('click', () => {
-       console.log(`song of index ${index} (in random list) and title ${song.title}`);
+       console.log(`This titled song ${song.title} is clicked`);
 
         const originalIndexInFullList = songs.findIndex(s => s.file === song.file);
 
@@ -151,11 +141,40 @@ Card.addEventListener('click', () => {
             console.error("Error: Clicked song not found in the original song list. Cannot play.");
         }
     });
-    cardContainer.appendChild(Card);
+    Container.appendChild(Card);
 
 });
+}
+const cardContainer = document.getElementById('cards');
 
+const RandomSong = [...songs]; 
+for (let i = RandomSong.length - 1; i > 0; i--) { 
+ const j = Math.floor(Math.random() * (i + 1));
+ const temp = RandomSong[i];
+ RandomSong[i] = RandomSong[j];
+ RandomSong[j] = temp;
+}
+
+const randomSong = RandomSong.slice(0, 6); 
+
+displaySongs(randomSong, cardContainer)
 // for future:- make it randomise every hour
+// for artist page
+  
+  // NEW references for your page-switching logic
+  const viewport = document.querySelector('.viewport');
+  const artistPage = document.querySelector('.mainArtistpg');
+  const artistBackBtn = document.getElementById('artist-back-btn');
+  
+  // References for the elements ON the artist page
+  const artistPic = document.querySelector('.ArtistProfilePic');
+  const artistNameEl = document.querySelector('.ArtistName');
+  const artistSongGrid = document.getElementById('artist-song-grid');
+
+  artistBackBtn.addEventListener('click',()=>{
+    viewport.style.display = "flex"
+    artistPage.style.display = "none"
+  })
 
 // for popular artists 
 
@@ -183,7 +202,30 @@ randomArtist.forEach(artist => {
                              <h4>${artist.name}</h4>
                             </div>`
   
+CardforArtist.addEventListener('click',()=>{
+  viewport.style.display = "none"
+  artistPage.style.display = "flex"
+
+  const imgeforpro = document.createElement('img')
+  imgeforpro.src = artist.image
+  artistPic.innerHTML =""
+  imgeforpro.style.width = "100%";
+  imgeforpro.style.height = "100%";
+  imgeforpro.style.objectFit = "cover";
+  artistPic.appendChild(imgeforpro)
+
+const naam = document.createElement('h4')
+  naam.textContent = artist.name
+  artistNameEl.innerHTML = ""
+  artistNameEl.appendChild(naam)
+
+
+ const ArtistsSong = songs.filter(song => (song.artist).includes(artist.name))
+ displaySongs(ArtistsSong, artistSongGrid)
+})
+  
 popA.appendChild(CardforArtist)
+
 });
 
 

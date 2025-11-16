@@ -25,8 +25,107 @@ body {
     color: var(--text-primary);
     height: 100vh;
     overflow: hidden;
+    position: relative;
 }
 
+.mainArtistpg {
+    display: flex; /* Use flexbox, not position: absolute */
+    flex-direction: column;
+    width: 100%;
+    /* No fixed height! Let content decide. */
+}
+
+.artistpg {
+    /* Use the same gradient as your 'discover' box for consistency */
+    background: linear-gradient(135deg, #159f31, #004d03);
+    
+    display: flex;
+    align-items: center; /* Vertically center items */
+    gap: 30px; /* Space between pic and name */
+    padding: 40px;
+    position: relative; /* Needed for the back button */
+    
+    border-radius: 15px;
+    /* Remove fixed height */
+    /* Remove justify-content: space-evenly */
+}
+
+/* Back Button Style */
+#artist-back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s;
+}
+#artist-back-btn:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+.ArtistProfilePic {
+    width: 200px; /* Slightly smaller is more common */
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden; /* This will clip the img to a circle */
+    flex-shrink: 0; /* Prevents pic from shrinking */
+    
+    /* Remove background-color */
+    /* Remove aspect-ratio (width and height do this) */
+}
+
+.ArtistProfilePic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This is the key! */
+}
+
+.ArtistName {
+    /* Remove all old styles (margin, width, height, background) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ArtistName h4 {
+    font-size: 48px; /* Big artist name */
+    font-weight: 800;
+    color: white; /* Make text white */
+}
+.ArtistName p {
+    font-size: 16px;
+    color: var(--text-secondary); /* Use your existing variable */
+}
+
+
+.lowerbd {
+    /* Remove fixed height and background-color */
+    padding: 25px 0; /* Match the padding of .section2 */
+}
+
+.SongSung {
+    /* This will style the <h2> we added */
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* This grid will hold the songs. It already has your 
+   .items-grid styles, so we just add spacing. */
+#artist-song-grid {
+    padding-bottom: 40px;
+}
 a {
     text-decoration: none;
     color: inherit;
@@ -618,6 +717,10 @@ input[type=range]::-ms-thumb{
         order: -1;
     }
 
+    .mainArtistpg{
+        width: 95%;
+        margin-left: 5px;
+    }
    
     .content-bottom{
         width: calc(100% - 20px); 
@@ -642,4 +745,51 @@ input[type=range]::-ms-thumb{
     .size span{
         font-size: 34px;
     }
+
+    .ArtistProfilePic {
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden; 
+    flex-shrink: 0;
+    
+}
+
+.artistpg {
+    background: linear-gradient(135deg, #159f31, #004d03);
+    
+    display: flex;
+    align-items: center; 
+    gap: 30px;
+    padding: 40px;
+    position: relative;
+    
+    border-radius: 15px;
+    flex-direction: column;
+}
+
+.ArtistProfilePic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This is the key! */
+}
+
+.ArtistName {
+    /* Remove all old styles (margin, width, height, background) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ArtistName h4 {
+    font-size: 30px;
+    font-weight: 600;
+    color: white; 
+}
+.ArtistName p {
+    font-size: 16px;
+    color: var(--text-secondary); 
+}
+
 }
