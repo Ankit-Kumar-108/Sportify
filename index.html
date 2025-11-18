@@ -7,7 +7,7 @@
     <title>Mantra</title>
     <link rel="stylesheet" href="style.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    </head>
+</head>
 
 <body>
 
@@ -25,7 +25,7 @@
                         <a href="#" id="Home-btn"> <span class="material-symbols-outlined">home</span>Home</a>
                     </div>
                     <div class="nav-item " id="search-bar">
-                        <a href="#"> <span class="material-symbols-outlined">search</span>Search</a>
+                        <a href="#" id="search-btn"> <span class="material-symbols-outlined">search</span>Search</a>
                     </div>
                     <div class="nav-item " id="library-music">
                         <a href="#"> <span class="material-symbols-outlined">library_music</span>Your Library</a>
@@ -37,8 +37,9 @@
                     <div class="nav-item">
                         <a href="#"><span class="material-symbols-outlined">add_box</span>Create Playlist</a>
                     </div>
+                    <!-- Added ID for Liked Songs Button -->
                     <div class="nav-item">
-                        <a href="#"><span class="material-symbols-outlined">favorite</span>Liked Songs</a>
+                        <a href="#" id="liked-songs-btn"><span class="material-symbols-outlined">favorite</span>Liked Songs</a>
                     </div>
                 </div>
             </div>
@@ -56,13 +57,51 @@
                 </div>
                 <div class="subscribe-profile">
                     <div class="subscribe">Upgrade</div>
-                    <div class="profile">
+                    <div class="profile" id="profilePic" style="overflow: hidden;">
                         <span class="material-symbols-outlined">person</span>
                     </div>
                 </div>
             </div>
 
+            <!-- SEARCH VIEW (NEW) -->
+            <div id="search-view" class="secondary-view" style="display: none;">
+                <div class="search-input-container">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" id="search-input" placeholder="Search for songs or artists...">
+                </div>
+                <div class="search-results-container">
+                    <h2>Songs</h2>
+                    <div class="items-grid" id="search-results-songs">
+                        <p class="initial-message">Start typing to see results...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIKED SONGS VIEW (NEW) -->
+            <div id="liked-songs-view" class="secondary-view" style="display: none;">
+                 <div class="playlist-header liked-header">
+                    <button id="liked-back-btn" class="back-btn">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </button>
+                    <div class="playlist-img" id="liked-pl-img">
+                        <span class="material-symbols-outlined" style="font-size:100px;">favorite</span>
+                    </div>
+                    <div class="playlist-details">
+                        <span class="pl-type">Playlist</span>
+                        <h1 id="liked-pl-title">Liked Songs</h1>
+                        <p id="liked-song-count">0 songs</p>
+                    </div>
+                </div>
+                <div class="playlist-songs">
+                    <div class="items-grid" id="liked-songs-container">
+                        <p class="initial-message" id="liked-empty-message">You haven't liked any songs yet.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ARTIST PAGE VIEW (EXISTING) -->
             <div class="mainArtistpg" style="display: none;">
+                <!-- ... (Artist Page content remains the same) ... -->
                 <div class="artistpg">
 
                     <button id="artist-back-btn">
@@ -73,15 +112,15 @@
                         <img src="assets/Artists/arjit.jpeg" alt="Artist" />
                     </div>
                     <div style="display: flex; justify-content: center;align-items: center; flex-direction: column;">
-                    <div class="ArtistName">
-                        <h4>Artist Name</h4>
-                        <p>150,000,000 Monthly Listeners</p>
-                    </div>
-                    <div class="playlist-actions">
+                        <div class="ArtistName">
+                            <h4>Artist Name</h4>
+                            <p>150,000,000 Monthly Listeners</p>
+                        </div>
+                        <div class="playlist-actions">
                             <button class="play-button" id="pl-play-btn1">
                                 <span class="material-symbols-outlined">play_arrow</span> Play
                             </button>
-                    </div>
+                        </div>
                     </div>
                 </div>
                 <div class="lowerbd">
@@ -93,7 +132,9 @@
                 </div>
             </div>
 
+            <!-- MAIN VIEWPORT (EXISTING) -->
             <div class="viewport">
+                <!-- ... (Viewport content remains the same) ... -->
                 <div class="discover" id="weekly-discover">
                     <div class="txtbtn">
                         <div class="title">
@@ -115,13 +156,13 @@
                 <section class="content-section Trending">
                     <h2 id="songs-section-title">Trending Songs</h2>
                     <div class="items-grid" id="cards">
-                        </div>
+                    </div>
                 </section>
 
                 <section class="content-section POP-Artists">
                     <h2>Popular Artists</h2>
                     <div class="items-grid" id="POP-artists">
-                        </div>
+                    </div>
                 </section>
 
                 <section class="content-section radio">
@@ -189,20 +230,25 @@
                         </div>
                     </div>
                 </section>
-                
+
                 <section class="content-bottom">
                     <div class="seekbar">
                         <input type="range" name="SeekBar" id="SeekBar" min="0" value="0" max="100">
                     </div>
                     <div class="media-control">
                         <div class="mini-al">
+                            <div class="alb" id="player-art"></div>
 
-                            <div class="alb" id="player-art">
+                            <div class="tit" id="player-title"></div>
+
+                            <!-- UPDATED LIKE BUTTON (SVG) -->
+                            <div class="like-btn" id="like-btn" style="cursor: pointer; margin-left: 15px;">
+                                <!-- Default Grey Heart -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#b3b3b3">
+                                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
                             </div>
-
-                            <div class="tit" id="player-title">
-                            </div>
-
                         </div>
                         <div style="display: flex;gap: 10px;margin-right: 10px;">
                             <div class="previous size">
@@ -221,18 +267,20 @@
                         </div>
                     </div>
                 </section>
-                
-            </div> <div id="playlist-view" style="display: none;">
-                
+
+            </div>
+            <!-- PLAYLIST VIEW (EXISTING) -->
+            <div id="playlist-view" style="display: none;">
+                 <!-- ... (Playlist View content remains the same) ... -->
                 <div class="playlist-header">
-                    
+
                     <button id="playlist-back-btn"
                         style="position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.3); border: none; border-radius: 50%; width: 40px; height: 40px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">
                         <span class="material-symbols-outlined">arrow_back</span>
                     </button>
-                    
+
                     <div class="playlist-img" id="pl-img">
-                        </div>
+                    </div>
                     <div class="playlist-details">
                         <span class="pl-type">Playlist</span>
                         <h1 id="pl-title">Station Title</h1>
@@ -243,14 +291,33 @@
                             </button>
                         </div>
                     </div>
-                </div> <div class="playlist-songs">
-                    
+                </div>
+                <div class="playlist-songs">
+
                     <div id="pl-songs-container">
-                        </div>
+                    </div>
                 </div>
 
             </div>
-            </div> </main>
+        </div>
+    </main>
+
+    <!-- LOGIN POPUP MODAL (EXISTING) -->
+    <div id="login-popup" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Start Listening</h2>
+            </div>
+            <div class="modal-body">
+                <p>Sign in to play songs, create playlists, and save your favorites.</p>
+                <button id="popup-login-btn" class="play-button" style="width:100%; justify-content:center; margin-top:20px;">
+                    Sign In with Google
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <script>
         (function () {
             const seek = document.getElementById('SeekBar');
