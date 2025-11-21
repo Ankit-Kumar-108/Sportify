@@ -21,12 +21,15 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// Global variable to store all songs
+// Global Variables
 let ALL_SONGS = []; 
-// Global Audio Object
 const myMusic = new Audio();
-// Global Index Tracker
 let setMusicIndex = 0;
+
+// --- NEW: Shuffle Global Variables ---
+let isShuffleMode = false;
+let shuffledQueue = []; // Will hold the randomized list of indices
+let shuffleIndex = 0;   // Tracks where we are in the shuffled queue
 
 // ==========================================================================
 // 2. AUTHENTICATION & DATABASE FUNCTIONS
@@ -34,9 +37,7 @@ let setMusicIndex = 0;
 
 function showLoginPopup() {
     const modal = document.getElementById("login-popup");
-    if(modal) {
-        modal.style.display = "flex"; 
-    }
+    if(modal) modal.style.display = "flex"; 
 }
 
 window.loginUser = function() {
@@ -46,9 +47,7 @@ window.loginUser = function() {
             const modal = document.getElementById("login-popup");
             if(modal) modal.style.display = "none";
         })
-        .catch((error) => {
-            console.error("Login Error:", error);
-        });
+        .catch((error) => console.error("Login Error:", error));
 }
 
 window.logoutUser = function() {
@@ -93,7 +92,6 @@ window.toggleLike = async function(song) {
     }
 }
 
-// --- NEW: Global Helper to Check Playback Permission ---
 function canPlay() {
     if (auth.currentUser) {
         return true;
@@ -103,7 +101,6 @@ function canPlay() {
     }
 }
 
-// --- NEW: Global Helper to Update UI ---
 async function updatePlayerUI(song) {
     const albumArt = document.getElementById('player-art');
     const songTitle = document.getElementById('player-title');
@@ -119,7 +116,7 @@ async function updatePlayerUI(song) {
     
     const likeSvg = likeBtn ? likeBtn.querySelector('svg') : null;
     if(likeSvg) {
-        likeSvg.setAttribute('fill', '#b3b3b3'); // Reset to Grey
+        likeSvg.setAttribute('fill', '#b3b3b3'); 
         
         const user = auth.currentUser;
         if (user) {
@@ -136,8 +133,6 @@ async function updatePlayerUI(song) {
     }
 }
 
-// --- MOVED TO GLOBAL SCOPE: Display Songs ---
-// This fixes the "ReferenceError: displaySongs is not defined"
 function displaySongs(songLists, Container) {
     Container.innerHTML = "";
     songLists.forEach(song => {
@@ -156,15 +151,9 @@ function displaySongs(songLists, Container) {
       Card.addEventListener('click', async () => { 
         if(!canPlay()) return; 
 
-        // Note: isRadioMode logic is handled inside setupMusic usually, 
-        // but for direct clicks we just play the song.
-        
-        // Find index in the global ALL_SONGS array if possible, or local list
         let originalIndex = ALL_SONGS.findIndex(s => s.file === song.file); 
         
         if (originalIndex === -1) {
-            // Fallback if song isn't in ALL_SONGS yet (e.g. from liked list)
-            // We can just play it directly
              myMusic.src = song.file;
              myMusic.load();
              myMusic.play();
@@ -173,6 +162,12 @@ function displaySongs(songLists, Container) {
         }
 
         setMusicIndex = originalIndex;
+        
+        // If shuffle is on, we need to reset the shuffle order starting from this song
+        if (isShuffleMode) {
+            createShuffleQueue(setMusicIndex);
+        }
+
         myMusic.src = song.file;
         myMusic.load();
         myMusic.play();
@@ -182,7 +177,6 @@ function displaySongs(songLists, Container) {
     });
 }
 
-// --- Helper to Hide Views ---
 function hideAllViews() {
     const viewport = document.querySelector('.viewport');
     const artistPage = document.querySelector('.mainArtistpg');
@@ -197,7 +191,6 @@ function hideAllViews() {
     if(likedView) likedView.style.display = 'none';
 }
 
-// --- Function to Load Liked Songs ---
 async function loadLikedSongs() {
     const user = auth.currentUser;
     const likedSongsView = document.getElementById('liked-songs-view');
@@ -228,7 +221,6 @@ async function loadLikedSongs() {
         if (likedSongsList.length === 0) {
             likedContainer.innerHTML = '<p class="initial-message">You haven\'t liked any songs yet.</p>';
         } else {
-            // Now displaySongs is available here!
             displaySongs(likedSongsList, likedContainer); 
         }
         
@@ -239,7 +231,6 @@ async function loadLikedSongs() {
         likedContainer.innerHTML = '<p class="initial-message">Error loading songs.</p>';
     }
 }
-
 
 onAuthStateChanged(auth, (user) => {
     const loginBtn = document.querySelector('.subscribe-profile .subscribe');
@@ -341,6 +332,26 @@ console.log("--- MANTRA MUSIC PLAYER LOADED ---");
 // 5. MUSIC PLAYER LOGIC 
 // ==========================================================================
 
+// --- NEW: Helper to create random queue ---
+function createShuffleQueue(startIndex = 0) {
+    // Create array of indices [0, 1, 2, ... length-1]
+    let indices = Array.from({length: ALL_SONGS.length}, (_, i) => i);
+    
+    // Remove the current song so we don't play it immediately again
+    indices.splice(startIndex, 1);
+    
+    // Fisher-Yates Shuffle Algorithm
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    
+    // Put current song first
+    shuffledQueue = [startIndex, ...indices];
+    shuffleIndex = 0; // Start at the beginning of our new random list
+    console.log("Shuffle Queue Created:", shuffledQueue);
+}
+
 async function getSongs() {
   try {
       const response = await fetch("./assets/songs.json");
@@ -383,29 +394,23 @@ async function setupMusic() {
   const likeBtn = document.getElementById('like-btn');
   const mainContentArea = document.querySelector('.section2'); 
   
-  // --- Search Elements ---
   const searchBtn = document.getElementById('search-btn');
   const searchView = document.getElementById('search-view');
   const searchInput = document.getElementById('search-input');
   const searchResultsSongs = document.getElementById('search-results-songs');
 
-  // --- Liked Songs Elements ---
   const likedSongsBtn = document.getElementById('liked-songs-btn');
   const likedBackBtn = document.getElementById('liked-back-btn');
 
-  
-  // Initial UI Update 
   await updatePlayerUI(songs[setMusicIndex]);
 
   if (likeBtn) {
     likeBtn.addEventListener('click', () => {
-      const currentSong = songs[setMusicIndex]; // Use global index
+      const currentSong = songs[setMusicIndex]; 
       window.toggleLike(currentSong);
     });
   }
-
   
-  // --- SEARCH IMPLEMENTATION ---
   if (searchBtn) {
       searchBtn.addEventListener('click', (e) => {
           e.preventDefault();
@@ -441,7 +446,6 @@ async function setupMusic() {
       }, 300); 
   });
 
-  // --- LIKED SONGS IMPLEMENTATION ---
   if (likedSongsBtn) {
       likedSongsBtn.addEventListener('click', (e) => {
           e.preventDefault();
@@ -461,7 +465,6 @@ async function setupMusic() {
       });
   }
   
-  // ... (Hamburger Menu Logic) ...
   const hamburgerBtn = document.querySelector('.on-media .hamburger');
   const sidebar = document.querySelector('.section1');
   const sidebarLinks = document.querySelectorAll('.section1 .nav-item a');
@@ -483,12 +486,10 @@ async function setupMusic() {
     }
   }
 
-  // ... (Load Trending Songs) ...
   const cardContainer = document.getElementById('cards');
   const randomSongs = [...songs].sort(() => 0.5 - Math.random()).slice(0, 6);
-  displaySongs(randomSongs, cardContainer); // Now uses global displaySongs
+  displaySongs(randomSongs, cardContainer); 
 
-  // ... (Navigation Logic) ...
   const viewport = document.querySelector('.viewport');
   const artistPage = document.querySelector('.mainArtistpg');
   const artistBackBtn = document.getElementById('artist-back-btn');
@@ -524,7 +525,6 @@ async function setupMusic() {
       });
   }
 
-  // ... (Popular Artists Logic) ...
   const popA = document.getElementById('POP-artists');
   popA.innerHTML = "";
   const randomArtists = [...artists].sort(() => 0.5 - Math.random()).slice(0, 6);
@@ -555,7 +555,6 @@ async function setupMusic() {
     popA.appendChild(Card);
   });
 
-  // Artist Page Play Button
   const artistPlayBtn = document.getElementById('pl-play-btn1');
   artistPlayBtn.addEventListener('click', async () => { 
     if(!canPlay()) return; 
@@ -574,7 +573,6 @@ async function setupMusic() {
     }
   });
 
-  // Discover Weekly Logic
   const disbtn = document.getElementById('discovery-btn');
   const discoverImg = document.querySelector('#album img');
   
@@ -582,10 +580,19 @@ async function setupMusic() {
     if(!canPlay()) return; 
 
     const shuffleEl = document.getElementById('Shuffle');
-    if(shuffleEl) shuffleEl.innerHTML = ' <span class="material-symbols-outlined" style=" background-color: greenyellow;">shuffle</span>';
+    // Turn shuffle on automatically for Discovery
+    if (!isShuffleMode) {
+        isShuffleMode = true;
+        if(shuffleEl) shuffleEl.innerHTML = ' <span class="material-symbols-outlined" style=" background-color: greenyellow;">shuffle</span>';
+    }
 
+    // Pick random start
     const randomIndex = Math.floor(Math.random() * ALL_SONGS.length);
     setMusicIndex = randomIndex;
+    
+    // Create the shuffle queue
+    createShuffleQueue(setMusicIndex);
+    
     const newSong = ALL_SONGS[setMusicIndex]; 
 
     myMusic.src = newSong.file;
@@ -598,7 +605,6 @@ async function setupMusic() {
     }
   });
 
-  // Radio Card Logic
   const radioCards = document.querySelectorAll('.radio-card');
   radioCards.forEach(card => {
     card.addEventListener('click', () => {
@@ -619,7 +625,6 @@ async function setupMusic() {
     });
   });
 
-  // Playlist Page Play Button
   plPlayBtn.addEventListener('click', async () => { 
     if(!canPlay()) return; 
 
@@ -658,17 +663,25 @@ async function setupMusic() {
     }
   });
 
-  // Next Button
+  // --- UPDATED NEXT BUTTON LOGIC ---
   next.addEventListener('click', async () => { 
     if(!canPlay()) return;
     myMusic.pause();
     let newIndex;
+
     if (isRadioMode) {
       currentRadioQueueIndex = (currentRadioQueueIndex + 1) % radioQueue.length;
       const nextRadioSong = radioQueue[currentRadioQueueIndex];
       newIndex = ALL_SONGS.findIndex(s => s.file === nextRadioSong.file);
-    } else {
-      newIndex = (setMusicIndex + 1) % ALL_SONGS.length;
+    } 
+    else if (isShuffleMode) {
+        // SHUFFLE LOGIC: Move to next item in the shuffled queue
+        shuffleIndex = (shuffleIndex + 1) % shuffledQueue.length;
+        newIndex = shuffledQueue[shuffleIndex];
+    } 
+    else {
+        // NORMAL LOGIC: Just add 1
+        newIndex = (setMusicIndex + 1) % ALL_SONGS.length;
     }
     
     if (newIndex !== -1) {
@@ -680,17 +693,25 @@ async function setupMusic() {
     }
   });
 
-  // Previous Button
+  // --- UPDATED PREVIOUS BUTTON LOGIC ---
   Before.addEventListener('click', async () => { 
     if(!canPlay()) return;
     myMusic.pause();
     let newIndex;
+
     if (isRadioMode) {
       currentRadioQueueIndex = (currentRadioQueueIndex - 1 + radioQueue.length) % radioQueue.length;
       const prevRadioSong = radioQueue[currentRadioQueueIndex];
       newIndex = ALL_SONGS.findIndex(s => s.file === prevRadioSong.file);
-    } else {
-      newIndex = (setMusicIndex - 1 + ALL_SONGS.length) % ALL_SONGS.length;
+    } 
+    else if (isShuffleMode) {
+        // SHUFFLE LOGIC: Move back in the shuffled queue
+        shuffleIndex = (shuffleIndex - 1 + shuffledQueue.length) % shuffledQueue.length;
+        newIndex = shuffledQueue[shuffleIndex];
+    } 
+    else {
+        // NORMAL LOGIC: Just subtract 1
+        newIndex = (setMusicIndex - 1 + ALL_SONGS.length) % ALL_SONGS.length;
     }
 
     if (newIndex !== -1) {
@@ -702,22 +723,28 @@ async function setupMusic() {
     }
   });
 
-  // Auto Next
   myMusic.addEventListener('ended', () => {
     next.click();
   });
 
 
-  // --- Seekbar Logic ---
+  // --- UPDATED SHUFFLE BUTTON LOGIC ---
   const shuffle = document.getElementById('Shuffle');
-  let isShuffle = false;
   if(shuffle) {
       shuffle.addEventListener('click', () => {
-        isShuffle = !isShuffle;
-        if (isShuffle) {
+        // Toggle global shuffle mode
+        isShuffleMode = !isShuffleMode;
+        
+        if (isShuffleMode) {
+          // 1. Visual Feedback
           shuffle.innerHTML = ' <span class="material-symbols-outlined" style=" background-color: greenyellow;">shuffle</span>';
+          // 2. Create the shuffled queue IMMEDIATELY starting with current song
+          createShuffleQueue(setMusicIndex);
         } else {
+          // 1. Visual Feedback
           shuffle.innerHTML = '<span class="material-symbols-outlined">shuffle</span>';
+          // 2. Clear queue (optional, logic just falls back to normal index)
+          shuffledQueue = [];
         }
       });
   }
